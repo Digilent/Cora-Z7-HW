@@ -25,12 +25,8 @@ set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
    puts ""
-<<<<<<< HEAD
-   common::send_gid_msg -ssname BD::TCL -id 2040 -severity "CRITICAL WARNING" "This script was generated using Vivado <$scripts_vivado_version> without IP versions in the create_bd_cell commands, but is now being run in <$current_vivado_version> of Vivado. There may have been changes to the IP between Vivado <$scripts_vivado_version> and <$current_vivado_version>, which could impact the functionality and configuration of the design."
-=======
    if { [string compare $scripts_vivado_version $current_vivado_version] > 0 } {
       catch {common::send_gid_msg -ssname BD::TCL -id 2042 -severity "ERROR" " This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Sourcing the script failed since it was created with a future version of Vivado."}
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
 
    } else {
      catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
@@ -233,20 +229,12 @@ proc create_root_design { parentCell } {
   set pwm_0 [ create_bd_port -dir O -from 2 -to 0 pwm_0 ]
 
   # Create instance: PWM_0, and set properties
-<<<<<<< HEAD
-  set PWM_0 [ create_bd_cell -type ip -vlnv digilentinc.com:IP:PWM PWM_0 ]
-=======
   set PWM_0 [ create_bd_cell -type ip -vlnv digilentinc.com:IP:PWM:2.0 PWM_0 ]
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
   set_property CONFIG.NUM_PWM {3} $PWM_0
 
 
   # Create instance: axi_gpio_0, and set properties
-<<<<<<< HEAD
-  set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio axi_gpio_0 ]
-=======
   set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_0 ]
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
   set_property -dict [list \
     CONFIG.GPIO_BOARD_INTERFACE {btns_2bits} \
     CONFIG.USE_BOARD_FLOW {true} \
@@ -254,11 +242,7 @@ proc create_root_design { parentCell } {
 
 
   # Create instance: processing_system7_0, and set properties
-<<<<<<< HEAD
-  set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7 processing_system7_0 ]
-=======
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
   set_property -dict [list \
     CONFIG.PCW_ACT_APU_PERIPHERAL_FREQMHZ {650.000000} \
     CONFIG.PCW_ACT_CAN_PERIPHERAL_FREQMHZ {10.000000} \
@@ -591,11 +575,7 @@ proc create_root_design { parentCell } {
 
 
   # Create instance: ps7_0_axi_periph, and set properties
-<<<<<<< HEAD
-  set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect ps7_0_axi_periph ]
-=======
   set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
   set_property CONFIG.NUM_MI {3} $ps7_0_axi_periph
 
 
@@ -603,11 +583,7 @@ proc create_root_design { parentCell } {
   set rst_ps7_0_50M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_ps7_0_50M ]
 
   # Create instance: xadc_wiz_0, and set properties
-<<<<<<< HEAD
-  set xadc_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz xadc_wiz_0 ]
-=======
   set xadc_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 xadc_wiz_0 ]
->>>>>>> 55e537883cad81e4a063ceb75d06e2743658219e
   set_property -dict [list \
     CONFIG.CHANNEL_ENABLE_VAUXP0_VAUXN0 {true} \
     CONFIG.CHANNEL_ENABLE_VAUXP12_VAUXN12 {true} \
